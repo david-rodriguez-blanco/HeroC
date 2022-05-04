@@ -103,16 +103,37 @@ int menu()
 	int eleccion;
 	//representación visual del menú inicial y las distintas opciones
 	enum Opciones {JUGAR=1, CARGAR_PARTIDA=2, RANKING=3, SALIR=0};//estan por ahora opciones de las características opcionales, ya veremos si las dejamos o se van
+	
 	//se elige mediante el ratón o teclado una de las opciones, dando así valor a "eleccion"
-	cin >> eleccion;//ejemplo basico de esto ^
-	if (eleccion == JUGAR)
-		elegir(); //aun sin definir
-	if (eleccion == CARGAR_PARTIDA)
-		cargar();//aun sin definir
-	if (eleccion == SALIR)
-		return 0;
-	if (eleccion == RANKING)
-		ranking();//aun sin definir
+	do
+	{
+		cin >> eleccion;//ejemplo basico de esto 
+		if (eleccion == JUGAR)
+			eleccion=elegir(); //aun sin definir
+		if (eleccion == CARGAR_PARTIDA)
+			cargar();//aun sin definir
+		if (eleccion == SALIR)
+			return 0;
+		if (eleccion == RANKING)
+			ranking();//aun sin definir
+	}while(((eleccion!=JUGAR)&&(eleccion!=CARGAR_PARTIDA))&&((eleccion!=SALIR)&&(eleccion!=RANKING)));
 }
 	
+int elegir() //similar a menú, solo que debes elegir entre jugar contra la CPU o contra otro jugador
+{
+	enum Choice {JCJ=1, JCM=2, EXIT=0};
+	int modo;
+	do
+	{
+		//selección de una de las opciones, que hará que varíe el valor de modo;
+		cin >>modo;
+		if(modo==JCJ)
+			jugar(j2); //prototipo funcion de juego, solo entra un dato que indica el tipo de jugador que es el J2 ¿o tendremos que meter también el tablero y demás? 
+		if(modo==JCM)
+			jugar(m); //""
+		if(modo==SALIR)
+			return -1; //asi, actualizamos en menu el valor de eleccion, haciendo que vuelva al bucle de pedir un valor válido de elección
+	
+		   
+}
 
